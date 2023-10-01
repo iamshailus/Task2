@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form id="registrationForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div id="registrationData">
+        <!-- Display submitted data here -->
+    </div>
+
+    <script>
+        const registrationForm = document.getElementById("registrationForm");
+        const registrationData = document.getElementById("registrationData");
+
+        registrationForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(registrationForm);
+
+            // Create an object to hold the data
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Display the submitted data
+            registrationData.innerHTML = "<h2>Submitted Data:</h2>";
+            for (const key in data) {
+                registrationData.innerHTML += `<p><strong>${key}:</strong> ${data[key]}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
